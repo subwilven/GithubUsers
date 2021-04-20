@@ -7,15 +7,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.githubusers.R
 import com.example.githubusers.databinding.ItemUserBinding
 import com.example.githubusers.models.User
+import com.squareup.picasso.Picasso
+import java.io.File
 
-class UsersAdapter :RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
+class UsersAdapter : RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
 
 
-    var userList :List<User>? =null
+    var userList: List<User>? = null
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_user,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
         val binding = ItemUserBinding.bind(view)
         return UserViewHolder(binding)
     }
@@ -28,7 +30,7 @@ class UsersAdapter :RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-       return userList?.count() ?:0
+        return userList?.count() ?: 0
     }
 
     fun setData(it: List<User>?) {
@@ -36,10 +38,14 @@ class UsersAdapter :RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
         notifyDataSetChanged()
     }
 
-    inner class UserViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class UserViewHolder(private val binding: ItemUserBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(user:User){
-            binding.tvUserName.text = user.id.toString()
+        fun bind(user: User) {
+            binding.apply {
+                tvUserName.text = user.login
+                Picasso.get().load(user.avatarURL).into(ivAvatar)
+            }
         }
     }
 }

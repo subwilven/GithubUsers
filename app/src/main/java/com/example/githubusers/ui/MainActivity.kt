@@ -2,6 +2,7 @@ package com.example.githubusers.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusers.R
 import com.example.githubusers.databinding.ActivityMainBinding
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     private fun setUpViews() {
         mAdapter= UsersAdapter()
         binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
+            layoutManager = GridLayoutManager(this@MainActivity,2)
             adapter = mAdapter
         }
     }
