@@ -51,4 +51,26 @@ data class User (
 
     @SerializedName("site_admin")
     val siteAdmin: Boolean
-)
+){
+
+    constructor(login :String,avatarUrl:String):this(
+        login,
+        0L,
+        "",
+        avatarUrl,
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        false
+    )
+}

@@ -1,6 +1,6 @@
 package com.example.githubusers.data
 
-class Repository(val githubApis: GithubApis) {
+open class Repository(val githubApis: GithubApis) {
 
-    suspend fun fetchUsersList() = githubApis.fetchUsers()
+    open suspend fun fetchUsersList() = githubApis.fetchUsers()
 }
